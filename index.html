@@ -634,7 +634,7 @@
             return div;
         }
         
-        function doAutofill() {
+        /*function doAutofill() {
             const hoy = new Date().toISOString().slice(0, 10);
             state.meta = {
                 nombre_id: 'DEMO-Autofill',
@@ -653,7 +653,7 @@
                 state.answers[q.id] = Math.floor(Math.random() * 5) + 1;
             });
             renderApp();
-        }
+        } */
 
         function renderActions() {
             const div = document.createElement('div');
@@ -663,7 +663,7 @@
             const missingItems = itemsSection.questions
                 .map(q => q.id)
                 .filter(id => state.answers[id] == null);
-            const btnAutofill = document.createElement('button');
+            /*const btnAutofill = document.createElement('button');
             btnAutofill.type = 'button';
             btnAutofill.className = 'btn btn-secondary';
             btnAutofill.textContent = 'Autofill (demo)';
@@ -672,7 +672,7 @@
                     doAutofill();
                 }
             });
-            div.appendChild(btnAutofill);
+            div.appendChild(btnAutofill); */
 
             const btnCheck = document.createElement('button');
             btnCheck.className = 'btn btn-secondary';
@@ -773,8 +773,6 @@
             content.innerHTML = `
                 <div class="success-message">
                     <h2>✅ Cuestionario enviado correctamente</h2>
-                    <p>Los resultados han sido guardados en Google Sheets.</p>
-                    <p style="margin-top: 20px;"><a href="#" onclick="location.reload()">Completar otro cuestionario</a></p>
                 </div>
             `;
         }
