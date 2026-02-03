@@ -633,6 +633,27 @@
 
             return div;
         }
+        
+        function doAutofill() {
+            const hoy = new Date().toISOString().slice(0, 10);
+            state.meta = {
+                nombre_id: 'DEMO-Autofill',
+                edad: '5',
+                sexo: 'Niño',
+                fecha_evaluacion: hoy,
+                centro_escuela: 'Centro Demo',
+                curso_etapa: 'Infantil 5 años',
+                nombre_respondedor: 'Docente Demo',
+                relacion: 'Profesor/a',
+                meses_conoce: '10',
+                grado_conocimiento: '8'
+            };
+            const itemsSection = questionnaireData.sections.find(s => s.id === 'items');
+            itemsSection.questions.forEach(q => {
+                state.answers[q.id] = Math.floor(Math.random() * 5) + 1;
+            });
+            renderApp();
+        }
 
         function renderActions() {
             const div = document.createElement('div');
@@ -642,6 +663,16 @@
             const missingItems = itemsSection.questions
                 .map(q => q.id)
                 .filter(id => state.answers[id] == null);
+            const btnAutofill = document.createElement('button');
+            btnAutofill.type = 'button';
+            btnAutofill.className = 'btn btn-secondary';
+            btnAutofill.textContent = 'Autofill (demo)';
+            btnAutofill.addEventListener('click', () => {
+                if (confirm('¿Rellenar todo el cuestionario con datos de prueba?')) {
+                    doAutofill();
+                }
+            });
+            div.appendChild(btnAutofill);
 
             const btnCheck = document.createElement('button');
             btnCheck.className = 'btn btn-secondary';
@@ -653,6 +684,7 @@
                     alert(`Faltan ${missingItems.length} preguntas: ${missingItems.join(', ')}`);
                 }
             });
+            
 
             const btnSubmit = document.createElement('button');
             btnSubmit.className = 'btn btn-primary';
@@ -665,6 +697,7 @@
 
             return div;
         }
+        
 
         function updateRadioStyles(fieldId) {
             const radioOptions = document.querySelectorAll(`input[name="${fieldId}"]`);
