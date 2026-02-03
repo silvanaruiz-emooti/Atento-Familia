@@ -285,7 +285,7 @@
         // ========================================
         // CONFIGURACIÓN GOOGLE SHEETS
         // ========================================
-        const GOOGLE_SHEETS_URL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwwz7YZOlftkNx5rVs6qiMqshcbHidPBk7CLsMky9t1O6OdGGSxsLtcZb8b-LpnJOUqUA/exec';
         
         // ========================================
         // DATOS DEL CUESTIONARIO (JSON embebido)
@@ -681,8 +681,8 @@
         // ========================================
         // ENVÍO A GOOGLE SHEETS
         // ========================================
-        function handleSubmit() {
-            if (GOOGLE_SHEETS_URL === 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI') {
+          function handleSubmit() {
+            if (!GOOGLE_SHEETS_URL || !GOOGLE_SHEETS_URL.includes('/macros/s/') || !GOOGLE_SHEETS_URL.endsWith('/exec')) {
                 alert('⚠️ Por favor, configura la URL de Google Apps Script en el código.');
                 return;
             }
